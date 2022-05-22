@@ -81,14 +81,11 @@ if __name__ == '__main__':
             pred = torch.cat([pred_real.view(cfg.bs, -1), pred_fake.view(cfg.bs, -1)], dim=-1)
             loss_gen = - pur_loss(pred, cfg.prior)
             optim_gen.zero_grad()
-def get_gen_neg(h_emb, r_emb, t_emb, gen, bs, num_ng, emb_dim, device, gen_std, flag):
-    z_tail = torch.normal(mean=0, std=gen_std, size=(bs, num_ng//2, emb_dim//8)).to(device)
-    z_head = torch.normal(mean=0, std=gen_std, size=(bs, num_ng//2, emb_dim//8)).to(device)
-    if flag == 'gen':
-        neg_gen_tail = gen(z_tail)
-        neg_gen_head = gen(z_head)
-        h_emb, r_emb, t_emb = h_emb.detach(), r_emb.detach(), t_emb.detach()
-    elif flag == '
+            loss_gen.backward()
+            optim_gen.step()
+            avg_loss_gen.append(loss_gen.item())
+
+            # ==========
             # Train D
             # ==========
             h_emb, r_emb, t_emb = emb_model(X)
