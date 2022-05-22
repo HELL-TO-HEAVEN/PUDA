@@ -1,6 +1,6 @@
-\code\*.sh
-\code\*.out
-\code\*.err
+/code/*.sh
+/code/*.out
+/code/*.err
 
 
 # Byte-compiled / optimized / DLL files
