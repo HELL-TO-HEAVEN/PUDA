@@ -1,0 +1,17 @@
+Configurations:
+	data_root: ../data/FB15k-237
+	save_path: ./
+	num_ng: 8
+	num_ng_gen: 8
+	seed: 42
+	bs: 512
+	gpu: 0
+	emb_dim: 1024
+	lrd: 1e-05
+	lrg: 1e-05
+	prior: 1e-05
+	reg: 0
+	max_epochs: 2600
+	gen_drop: 0.5
+	gen_std: 1
+Epoch 1:

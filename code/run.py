@@ -27,9 +27,9 @@ def parse_args(args=None):
 if __name__ == '__main__':
     # preparation
     cfg = parse_args()
-    print('Configurations:')
+    print('Configurations:', flush=True)
     for arg in vars(cfg):
-        print(f'\t{arg}: {getattr(cfg, arg)}')
+        print(f'\t{arg}: {getattr(cfg, arg)}', flush=True)
     seed_everything(cfg.seed)
     device = torch.device(f'cuda:{cfg.gpu}' if torch.cuda.is_available() else 'cpu')
 
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     optim_gen = torch.optim.Adam(gen.parameters(), lr=cfg.lrg)
 
     for epoch in range(cfg.max_epochs):
-        print(f'Epoch {epoch + 1}:')
+        print(f'Epoch {epoch + 1}:', flush=True)
         emb_model.train()
         dis.train()
         gen.train()
@@ -99,8 +99,8 @@ if __name__ == '__main__':
             optim_dis.step()
             avg_loss_dis.append(loss_dis.item())
 
-        print(f'D Loss: {round(sum(avg_loss_dis)/len(avg_loss_dis), 4)}')
-        print(f'G Loss: {round(sum(avg_loss_gen)/len(avg_loss_gen), 4)}')
+        print(f'D Loss: {round(sum(avg_loss_dis)/len(avg_loss_dis), 4)}', flush=True)
+        print(f'G Loss: {round(sum(avg_loss_gen)/len(avg_loss_gen), 4)}', flush=True)
 
         if (epoch + 1) == cfg.max_epochs:
             emb_model.eval()

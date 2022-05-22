@@ -70,11 +70,11 @@ def evaluate(test_dataloader, already_ts_dict, e_dict, emb_model, dis, device):
     h1 = round(sum(h1)/len(h1), 3)
     h3 = round(sum(h3)/len(h3), 3)
     h10 = round(sum(h10)/len(h10), 3)
-    print(r)
-    print(rr)
-    print(h1)
-    print(h3)
-    print(h10)
+    print(r, flush=True)
+    print(rr, flush=True)
+    print(h1, flush=True)
+    print(h3, flush=True)
+    print(h10, flush=True)
     return r, rr, h1, h3, h10
 
 
