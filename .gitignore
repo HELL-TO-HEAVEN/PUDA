@@ -1,7 +1,8 @@
 /code/*.sh
 /code/*.out
 /code/*.err
-
+/*.log
+*.log
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

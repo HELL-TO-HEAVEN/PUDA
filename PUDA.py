@@ -161,7 +161,7 @@ def evaluate_wrapper(dataloader_tail, dataloader_head, \
     print(h1, flush=True)
     print(h3, flush=True)
     print(h10, flush=True)
-    return rr
+    return rr, h10
 
 def pur_loss(pred, prior):
     p_above = - torch.nn.functional.logsigmoid(pred[:, 0]).mean()
