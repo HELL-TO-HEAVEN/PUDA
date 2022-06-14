@@ -36,6 +36,7 @@ Auxilliary configurations:
 - max_epochs: maximum training epochs
 - tolerance: number of validations until executing early stop
 - valid_interval: number of epochs between validations
+- early_stop_metric: h10 or mrr
 
 Please run the code via:
 

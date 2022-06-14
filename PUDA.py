@@ -298,10 +298,10 @@ class Generator(torch.nn.Module):
 def parse_args(args=None):
     parser = argparse.ArgumentParser()
     # Tunable
-    parser.add_argument('--num_ng', default=2, type=int)
-    parser.add_argument('--num_ng_gen', default=2, type=int)
+    parser.add_argument('--num_ng', default=8, type=int)
+    parser.add_argument('--num_ng_gen', default=8, type=int)
     parser.add_argument('--bs', default=512, type=int)
-    parser.add_argument('--emb_dim', default=128, type=int)
+    parser.add_argument('--emb_dim', default=1024, type=int)
     parser.add_argument('--lrd', default=0.00001, type=float)
     parser.add_argument('--lrg', default=0.00001, type=float)
     parser.add_argument('--prior', default=0.00001, type=float)
@@ -317,6 +317,7 @@ def parse_args(args=None):
     parser.add_argument('--max_epochs', default=5000, type=int)
     parser.add_argument('--tolerance', default=5, type=int)
     parser.add_argument('--valid_interval', default=100, type=int)
+    parser.add_argument('--early_stop_metric', default='h10', type=str)
     return parser.parse_args(args)
 
 
@@ -377,7 +378,7 @@ if __name__ == '__main__':
     optim_gen = torch.optim.Adam(gen.parameters(), lr=cfg.lrg)
 
     tolerance = cfg.tolerance
-    max_mrr = 0
+    max_value = 0
     for epoch in range(cfg.max_epochs):
         print(f'Epoch {epoch + 1}:', flush=True)
         emb_model.train()
@@ -424,10 +425,16 @@ if __name__ == '__main__':
         if (epoch + 1) % cfg.valid_interval == 0:
             emb_model.eval()
             dis.eval()
-            rr = evaluate_wrapper(valid_dataloader_tail, valid_dataloader_head, \
+            rr, h10 = evaluate_wrapper(valid_dataloader_tail, valid_dataloader_head, \
                                 already_ts_dict_all, already_hs_dict_all, emb_model, dis, device, cfg)
-            if rr >= max_mrr:
-                max_mrr = rr
+            if cfg.early_stop_metric == 'mrr':
+                value = rr
+            elif cfg.early_stop_metric == 'h10':
+                value = h10
+            else:
+                raise ValueError
+            if value >= max_value:
+                max_value = value
                 tolerance = cfg.tolerance
             else:
                 tolerance -= 1
