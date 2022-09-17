@@ -1,3 +1,4 @@
+import os
 import torch
 import argparse
 import random
@@ -5,7 +6,6 @@ import pandas as pd
 import numpy as np 
 import pdb
 import tqdm
-import os
 
 
 def read_data(root):
