@@ -4,8 +4,8 @@ import pandas as pd
 import numpy as np 
 import pdb
 import random
-import os
 import tqdm
+import os
 
 
 def read_data(root):
