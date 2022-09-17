@@ -1,11 +1,11 @@
 import torch
 import argparse
+import random
 import pandas as pd
 import numpy as np 
 import pdb
 import tqdm
 import os
-import random
 
 
 def read_data(root):
