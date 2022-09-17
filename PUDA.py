@@ -3,9 +3,9 @@ import argparse
 import pandas as pd
 import numpy as np 
 import pdb
-import random
 import tqdm
 import os
+import random
 
 
 def read_data(root):
