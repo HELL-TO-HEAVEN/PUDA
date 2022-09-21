@@ -47,6 +47,22 @@ nohup python PUDA.py --data_root your_data_root --config_name config_value >your
 ## Reference
 
 ```
+@inproceedings{ijcai2022p312,
+  title     = {Positive-Unlabeled Learning with Adversarial Data Augmentation for Knowledge Graph Completion},
+  author    = {Tang, Zhenwei and Pei, Shichao and Zhang, Zhao and Zhu, Yongchun and Zhuang, Fuzhen and Hoehndorf, Robert and Zhang, Xiangliang},
+  booktitle = {Proceedings of the Thirty-First International Joint Conference on
+               Artificial Intelligence, {IJCAI-22}},
+  publisher = {International Joint Conferences on Artificial Intelligence Organization},
+  editor    = {Lud De Raedt},
+  pages     = {2248--2254},
+  year      = {2022},
+  month     = {7},
+  note      = {Main Track},
+  doi       = {10.24963/ijcai.2022/312},
+  url       = {https://doi.org/10.24963/ijcai.2022/312},
+}
+```
+```
 @article{tang2022positive,
   title={Positive-Unlabeled Learning with Adversarial Data Augmentation for Knowledge Graph Completion},
   author={Tang, Zhenwei and Pei, Shichao and Zhang, Zhao and Zhu, Yongchun and Zhuang, Fuzhen and Hoehndorf, Robert and Zhang, Xiangliang},
